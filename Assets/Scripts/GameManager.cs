@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject BgAlpah;
 
+    public GameObject BG;
+
     private bool isShow = false;
     // Start is called before the first frame update
     void Start()
@@ -64,15 +66,20 @@ public class GameManager : MonoBehaviour
         VideoPlayer.Play();
         PlayBtn.gameObject.SetActive(false);
         PauseBtn.gameObject.SetActive(true);
+        BG.GetComponent<RectTransform>().DOAnchorPosY(-1600, 1f);
+        BgAlpah.GetComponent<RectTransform>().DOAnchorPosY(0f, 1f);
+
+
     }
 
     public void CloseVideo()
     {
         isShow = false;
-        VideoPlayer.gameObject.SetActive(false);
-        BgAlpah.gameObject.SetActive(false);
+        VideoPlayer.Stop();
         PlayBtn.gameObject.SetActive(false);
         PauseBtn.gameObject.SetActive(true);
+        BG.GetComponent<RectTransform>().DOAnchorPosY(0f,1f);
+        BgAlpah.GetComponent<RectTransform>().DOAnchorPosY(1600f, 1f);
     }
 
     public void PauseVideo()

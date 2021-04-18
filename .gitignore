@@ -24,6 +24,7 @@ ExportedObj/
 *.pdb
 *.opendb
 *.VC.db
+*.mp4
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -36,3 +37,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+*.mp4
+*.mp4
+Assets/demo.mp4
+*.rar
