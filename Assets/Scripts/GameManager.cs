@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using easyar;
+using RenderHeads.Media.AVProVideo;
 using UnityEngine;
 using VideoPlayer = UnityEngine.Video.VideoPlayer;
 
@@ -10,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public RectTransform MoveLine;
 
-    public VideoPlayer VideoPlayer;
+    public MediaPlayer MediaPlayer;
 
     public ImageTargetController Controller;
 
@@ -28,20 +29,20 @@ public class GameManager : MonoBehaviour
     {
         MoveLine.DOAnchorPos3DY(-420f, 3f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
 
-       
 
 
+        
 
 #if UNITY_ANDROID && !UNITY_EDITOR
         //VideoPlayer.url = "jar:file://" + Application.streamingAssetsPath + "/demo.mp4";
 #endif
 
-#if UNITY_IPHONE 
+#if UNITY_IPHONE
         Debug.Log("这里苹果设备");
 #endif
 
 #if UNITY_EDITOR && UNITY_EDITOR_WIN
-       // VideoPlayer.url = "file://" + Application.streamingAssetsPath + "/demo.mp4";
+        // VideoPlayer.url = "file://" + Application.streamingAssetsPath + "/demo.mp4";
 #endif
 
     }
@@ -61,9 +62,10 @@ public class GameManager : MonoBehaviour
 
    public void PlayVideo()
     {
-        VideoPlayer.gameObject.SetActive(true);
+        MediaPlayer.gameObject.SetActive(true);
         BgAlpah.gameObject.SetActive(true);
-        VideoPlayer.Play();
+       
+        MediaPlayer.Play();
         PlayBtn.gameObject.SetActive(false);
         PauseBtn.gameObject.SetActive(true);
         BG.GetComponent<RectTransform>().DOAnchorPosY(-1600, 1f);
@@ -75,7 +77,8 @@ public class GameManager : MonoBehaviour
     public void CloseVideo()
     {
         isShow = false;
-        VideoPlayer.Stop();
+        MediaPlayer.Stop();
+        MediaPlayer.Rewind(true);
         PlayBtn.gameObject.SetActive(false);
         PauseBtn.gameObject.SetActive(true);
         BG.GetComponent<RectTransform>().DOAnchorPosY(0f,1f);
@@ -84,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseVideo()
     {
-        VideoPlayer.Pause();
+        MediaPlayer.Pause();
         PlayBtn.gameObject.SetActive(true);
         PauseBtn.gameObject.SetActive(false);
     }
