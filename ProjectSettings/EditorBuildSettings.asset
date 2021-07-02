@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene1.unity
     guid: 552472d16efe4864c970946749193908
+  - enabled: 0
+    path: Assets/UniWebView/Demo/UniWebViewDemo.unity
+    guid: 938c077f40a814d4584ce2ad17947cf3
   m_configObjects: {}
