@@ -9,9 +9,13 @@ public class PlayMovie : MonoBehaviour
     private VideoPlayer _videoPlayer;
 
     public GameObject ShowGameObject;
+
+    private Rect _showRect;
     private void Awake()
     {
         _videoPlayer = this.GetComponent<VideoPlayer>();
+
+        _showRect= new Rect(200f,600f,800f,800f);
     }
     // Start is called before the first frame update
     void Start()
@@ -22,7 +26,20 @@ public class PlayMovie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (this.gameObject.activeInHierarchy)
+        {
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(this.transform.position);
+
+            if (_showRect.Contains(screenPos))
+            {
+                if (!_videoPlayer.isPlaying)
+                {
+                    _videoPlayer.Play();
+                }
+            }
+
+
+        }
     }
 
     private void OnDisable()
@@ -35,6 +52,6 @@ public class PlayMovie : MonoBehaviour
     {
 
         ShowGameObject.gameObject.SetActive(false);
-        _videoPlayer.Play();
+        //_videoPlayer.Play();
     }
 }
